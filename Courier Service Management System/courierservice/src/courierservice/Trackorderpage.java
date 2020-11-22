@@ -5,6 +5,19 @@
  */
 package courierservice;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ASUS
@@ -14,9 +27,15 @@ public class Trackorderpage extends javax.swing.JFrame {
     /**
      * Creates new form Trackorderpage
      */
-    public Trackorderpage() {
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
+    static int i;
+    public Trackorderpage(int id) {
+        i=id;
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,10 +50,40 @@ public class Trackorderpage extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTextPane3 = new javax.swing.JTextPane();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextPane2 = new javax.swing.JTextPane();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTextPane4 = new javax.swing.JTextPane();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTextPane5 = new javax.swing.JTextPane();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jTextPane6 = new javax.swing.JTextPane();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jTextPane7 = new javax.swing.JTextPane();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        jTextPane9 = new javax.swing.JTextPane();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        jTextPane11 = new javax.swing.JTextPane();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        jTextPane12 = new javax.swing.JTextPane();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        jTextPane8 = new javax.swing.JTextPane();
+        jScrollPane18 = new javax.swing.JScrollPane();
+        jTextPane10 = new javax.swing.JTextPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -44,181 +93,6 @@ public class Trackorderpage extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
-        jLabel40 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel42 = new javax.swing.JLabel();
-        jLabel43 = new javax.swing.JLabel();
-        jLabel44 = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel53 = new javax.swing.JLabel();
-        jLabel54 = new javax.swing.JLabel();
-        jLabel55 = new javax.swing.JLabel();
-        jLabel56 = new javax.swing.JLabel();
-        jLabel57 = new javax.swing.JLabel();
-        jLabel58 = new javax.swing.JLabel();
-        jLabel59 = new javax.swing.JLabel();
-        jLabel60 = new javax.swing.JLabel();
-        jLabel61 = new javax.swing.JLabel();
-        jLabel62 = new javax.swing.JLabel();
-        jLabel63 = new javax.swing.JLabel();
-        jLabel64 = new javax.swing.JLabel();
-        jLabel65 = new javax.swing.JLabel();
-        jLabel66 = new javax.swing.JLabel();
-        jLabel67 = new javax.swing.JLabel();
-        jLabel68 = new javax.swing.JLabel();
-        jLabel69 = new javax.swing.JLabel();
-        jLabel70 = new javax.swing.JLabel();
-        jLabel71 = new javax.swing.JLabel();
-        jLabel72 = new javax.swing.JLabel();
-        jLabel73 = new javax.swing.JLabel();
-        jLabel74 = new javax.swing.JLabel();
-        jLabel75 = new javax.swing.JLabel();
-        jLabel76 = new javax.swing.JLabel();
-        jLabel77 = new javax.swing.JLabel();
-        jLabel78 = new javax.swing.JLabel();
-        jLabel79 = new javax.swing.JLabel();
-        jLabel80 = new javax.swing.JLabel();
-        jLabel81 = new javax.swing.JLabel();
-        jLabel82 = new javax.swing.JLabel();
-        jLabel83 = new javax.swing.JLabel();
-        jLabel84 = new javax.swing.JLabel();
-        jLabel85 = new javax.swing.JLabel();
-        jLabel86 = new javax.swing.JLabel();
-        jLabel87 = new javax.swing.JLabel();
-        jLabel88 = new javax.swing.JLabel();
-        jLabel89 = new javax.swing.JLabel();
-        jLabel90 = new javax.swing.JLabel();
-        jLabel91 = new javax.swing.JLabel();
-        jLabel92 = new javax.swing.JLabel();
-        jLabel93 = new javax.swing.JLabel();
-        jLabel94 = new javax.swing.JLabel();
-        jLabel95 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel96 = new javax.swing.JLabel();
-        jLabel97 = new javax.swing.JLabel();
-        jLabel98 = new javax.swing.JLabel();
-        jLabel99 = new javax.swing.JLabel();
-        jLabel100 = new javax.swing.JLabel();
-        jLabel101 = new javax.swing.JLabel();
-        jLabel102 = new javax.swing.JLabel();
-        jLabel103 = new javax.swing.JLabel();
-        jLabel104 = new javax.swing.JLabel();
-        jLabel105 = new javax.swing.JLabel();
-        jLabel106 = new javax.swing.JLabel();
-        jLabel107 = new javax.swing.JLabel();
-        jLabel108 = new javax.swing.JLabel();
-        jLabel109 = new javax.swing.JLabel();
-        jLabel110 = new javax.swing.JLabel();
-        jLabel111 = new javax.swing.JLabel();
-        jLabel112 = new javax.swing.JLabel();
-        jLabel113 = new javax.swing.JLabel();
-        jLabel114 = new javax.swing.JLabel();
-        jLabel115 = new javax.swing.JLabel();
-        jLabel116 = new javax.swing.JLabel();
-        jLabel117 = new javax.swing.JLabel();
-        jLabel118 = new javax.swing.JLabel();
-        jLabel119 = new javax.swing.JLabel();
-        jLabel120 = new javax.swing.JLabel();
-        jLabel121 = new javax.swing.JLabel();
-        jLabel122 = new javax.swing.JLabel();
-        jLabel123 = new javax.swing.JLabel();
-        jLabel124 = new javax.swing.JLabel();
-        jLabel125 = new javax.swing.JLabel();
-        jLabel126 = new javax.swing.JLabel();
-        jLabel127 = new javax.swing.JLabel();
-        jLabel128 = new javax.swing.JLabel();
-        jLabel129 = new javax.swing.JLabel();
-        jLabel130 = new javax.swing.JLabel();
-        jLabel131 = new javax.swing.JLabel();
-        jLabel132 = new javax.swing.JLabel();
-        jLabel133 = new javax.swing.JLabel();
-        jLabel134 = new javax.swing.JLabel();
-        jLabel135 = new javax.swing.JLabel();
-        jLabel136 = new javax.swing.JLabel();
-        jLabel137 = new javax.swing.JLabel();
-        jLabel138 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel139 = new javax.swing.JLabel();
-        jLabel140 = new javax.swing.JLabel();
-        jLabel141 = new javax.swing.JLabel();
-        jLabel142 = new javax.swing.JLabel();
-        jLabel143 = new javax.swing.JLabel();
-        jLabel144 = new javax.swing.JLabel();
-        jLabel145 = new javax.swing.JLabel();
-        jLabel146 = new javax.swing.JLabel();
-        jLabel147 = new javax.swing.JLabel();
-        jLabel148 = new javax.swing.JLabel();
-        jLabel149 = new javax.swing.JLabel();
-        jLabel150 = new javax.swing.JLabel();
-        jLabel151 = new javax.swing.JLabel();
-        jLabel152 = new javax.swing.JLabel();
-        jLabel153 = new javax.swing.JLabel();
-        jLabel154 = new javax.swing.JLabel();
-        jLabel155 = new javax.swing.JLabel();
-        jLabel156 = new javax.swing.JLabel();
-        jLabel157 = new javax.swing.JLabel();
-        jLabel158 = new javax.swing.JLabel();
-        jLabel159 = new javax.swing.JLabel();
-        jLabel160 = new javax.swing.JLabel();
-        jLabel161 = new javax.swing.JLabel();
-        jLabel162 = new javax.swing.JLabel();
-        jLabel163 = new javax.swing.JLabel();
-        jLabel164 = new javax.swing.JLabel();
-        jLabel165 = new javax.swing.JLabel();
-        jLabel166 = new javax.swing.JLabel();
-        jLabel167 = new javax.swing.JLabel();
-        jLabel168 = new javax.swing.JLabel();
-        jLabel169 = new javax.swing.JLabel();
-        jLabel170 = new javax.swing.JLabel();
-        jLabel171 = new javax.swing.JLabel();
-        jLabel172 = new javax.swing.JLabel();
-        jLabel173 = new javax.swing.JLabel();
-        jLabel174 = new javax.swing.JLabel();
-        jLabel175 = new javax.swing.JLabel();
-        jLabel176 = new javax.swing.JLabel();
-        jLabel177 = new javax.swing.JLabel();
-        jLabel178 = new javax.swing.JLabel();
-        jLabel179 = new javax.swing.JLabel();
-        jLabel180 = new javax.swing.JLabel();
-        jLabel181 = new javax.swing.JLabel();
-        jLabel182 = new javax.swing.JLabel();
-        jLabel183 = new javax.swing.JLabel();
-        jLabel184 = new javax.swing.JLabel();
-        jLabel185 = new javax.swing.JLabel();
-        jLabel186 = new javax.swing.JLabel();
-        jLabel187 = new javax.swing.JLabel();
-        jLabel188 = new javax.swing.JLabel();
-        jLabel189 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel39 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -235,941 +109,26 @@ public class Trackorderpage extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jEditorPane1);
 
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
-        jPanel1.setLayout(null);
-
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel1.setText("Payment Discount Date");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(480, 240, 160, 17);
-
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel2.setText("Shipment Date");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(90, 120, 110, 17);
-
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel3.setText("Track & Trace Number");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(90, 90, 160, 17);
-
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel4.setText("Shipping Method");
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(90, 60, 170, 17);
-
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel5.setText("Order No.");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(90, 30, 90, 20);
-
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel6.setText("Location Code");
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(90, 150, 110, 20);
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("SHIP - TO - ADDRESS");
-        jPanel1.add(jLabel7);
-        jLabel7.setBounds(650, 360, 160, 17);
-
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel8.setText("Requested Delivery Date");
-        jPanel1.add(jLabel8);
-        jLabel8.setBounds(90, 180, 160, 17);
-
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel9.setText("Sales Person Code");
-        jPanel1.add(jLabel9);
-        jLabel9.setBounds(90, 210, 120, 17);
-
-        jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel10.setText("Sell - to Connect");
-        jPanel1.add(jLabel10);
-        jLabel10.setBounds(90, 240, 130, 17);
-
-        jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel11.setText("Reference No.");
-        jPanel1.add(jLabel11);
-        jLabel11.setBounds(90, 270, 100, 17);
-
-        jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel12.setText("Order Date");
-        jPanel1.add(jLabel12);
-        jLabel12.setBounds(480, 30, 90, 17);
-
-        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel13.setText("Document Date");
-        jPanel1.add(jLabel13);
-        jLabel13.setBounds(480, 60, 110, 20);
-
-        jLabel14.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel14.setText("Payment Status");
-        jPanel1.add(jLabel14);
-        jLabel14.setBounds(480, 90, 120, 17);
-
-        jLabel15.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel15.setText("Payment Method");
-        jPanel1.add(jLabel15);
-        jLabel15.setBounds(480, 120, 120, 17);
-
-        jLabel16.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel16.setText("Payment Terms Code");
-        jPanel1.add(jLabel16);
-        jLabel16.setBounds(480, 150, 150, 17);
-
-        jLabel17.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel17.setText("Due Date");
-        jPanel1.add(jLabel17);
-        jLabel17.setBounds(480, 180, 90, 17);
-
-        jLabel18.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel18.setText("Paymont Discount");
-        jPanel1.add(jLabel18);
-        jLabel18.setBounds(480, 210, 130, 17);
-
-        jLabel19.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel19.setText("Commnets");
-        jPanel1.add(jLabel19);
-        jLabel19.setBounds(90, 300, 80, 17);
-
-        jLabel20.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel20.setText("SELL - TO - ADDRESS");
-        jPanel1.add(jLabel20);
-        jLabel20.setBounds(90, 360, 190, 17);
-
-        jLabel21.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel21.setText("ORD / 301262");
-        jPanel1.add(jLabel21);
-        jLabel21.setBounds(280, 30, 90, 20);
-
-        jLabel22.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel22.setText("Express Delivery");
-        jPanel1.add(jLabel22);
-        jLabel22.setBounds(280, 60, 110, 17);
-
-        jLabel23.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel23.setText("1000");
-        jPanel1.add(jLabel23);
-        jLabel23.setBounds(280, 90, 90, 17);
-
-        jLabel24.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel24.setText("4 / 11 / 2020");
-        jPanel1.add(jLabel24);
-        jLabel24.setBounds(280, 120, 90, 17);
-
-        jLabel25.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel25.setText("YELLOW");
-        jPanel1.add(jLabel25);
-        jLabel25.setBounds(280, 150, 80, 17);
-
-        jLabel26.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel26.setText("30 / 11 / 2020");
-        jPanel1.add(jLabel26);
-        jLabel26.setBounds(280, 180, 90, 17);
-
-        jLabel27.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel27.setText("Shashika De Silva");
-        jPanel1.add(jLabel27);
-        jLabel27.setBounds(280, 210, 140, 17);
-
-        jLabel28.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel28.setText("b2b");
-        jPanel1.add(jLabel28);
-        jLabel28.setBounds(280, 240, 21, 17);
-
-        jLabel29.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel29.setText("456789346");
-        jPanel1.add(jLabel29);
-        jLabel29.setBounds(280, 270, 100, 17);
-
-        jLabel30.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel30.setText("Demo Comment");
-        jPanel1.add(jLabel30);
-        jLabel30.setBounds(280, 300, 130, 17);
-
-        jLabel31.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel31.setText("4 / 11 / 2020");
-        jPanel1.add(jLabel31);
-        jLabel31.setBounds(700, 60, 110, 17);
-
-        jLabel33.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel33.setText("Paid");
-        jPanel1.add(jLabel33);
-        jLabel33.setBounds(700, 90, 26, 17);
-
-        jLabel34.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel34.setText("PayPal");
-        jPanel1.add(jLabel34);
-        jLabel34.setBounds(700, 120, 41, 17);
-
-        jLabel35.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel35.setText("1M (8D)");
-        jPanel1.add(jLabel35);
-        jLabel35.setBounds(700, 150, 70, 17);
-
-        jLabel36.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel36.setText("5 / 11 / 2020");
-        jPanel1.add(jLabel36);
-        jLabel36.setBounds(700, 180, 110, 17);
-
-        jLabel37.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel37.setText("4,00");
-        jPanel1.add(jLabel37);
-        jLabel37.setBounds(700, 210, 25, 17);
-
-        jLabel38.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel38.setText("28 / 11 / 2020");
-        jPanel1.add(jLabel38);
-        jLabel38.setBounds(700, 240, 90, 17);
-
-        jLabel40.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel40.setText("4 / 11 / 2020");
-        jPanel1.add(jLabel40);
-        jLabel40.setBounds(700, 30, 110, 17);
-
-        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel32.setText("BILL - TO - ADDRESS");
-        jPanel1.add(jLabel32);
-        jLabel32.setBounds(370, 360, 160, 17);
-
-        jLabel42.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel42.setText("Jay Jay Mills (pvt) Ltd"); // NOI18N
-        jPanel1.add(jLabel42);
-        jLabel42.setBounds(650, 390, 150, 14);
-
-        jLabel43.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel43.setText("b2b");
-        jPanel1.add(jLabel43);
-        jLabel43.setBounds(650, 420, 60, 14);
-
-        jLabel44.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel44.setText("No : 14, Sri Dharmarama road");
-        jPanel1.add(jLabel44);
-        jLabel44.setBounds(650, 450, 180, 14);
-
-        jLabel45.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel45.setText("Colombo 07 , Srilanka");
-        jPanel1.add(jLabel45);
-        jLabel45.setBounds(650, 480, 140, 14);
-
-        jPanel3.setBackground(new java.awt.Color(0, 204, 204));
-        jPanel3.setLayout(null);
-
-        jLabel53.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel53.setText("Payment Discount Date");
-        jPanel3.add(jLabel53);
-        jLabel53.setBounds(480, 240, 160, 17);
-
-        jLabel54.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel54.setText("Shipment Date");
-        jPanel3.add(jLabel54);
-        jLabel54.setBounds(90, 120, 110, 17);
-
-        jLabel55.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel55.setText("Track & Trace Number");
-        jPanel3.add(jLabel55);
-        jLabel55.setBounds(90, 90, 160, 17);
-
-        jLabel56.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel56.setText("Shipping Method");
-        jPanel3.add(jLabel56);
-        jLabel56.setBounds(90, 60, 170, 17);
-
-        jLabel57.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel57.setText("Order No.");
-        jPanel3.add(jLabel57);
-        jLabel57.setBounds(90, 30, 90, 20);
-
-        jLabel58.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel58.setText("Location Code");
-        jPanel3.add(jLabel58);
-        jLabel58.setBounds(90, 150, 110, 20);
-
-        jLabel59.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel59.setText("SHIP - TO - ADDRESS");
-        jPanel3.add(jLabel59);
-        jLabel59.setBounds(650, 360, 160, 17);
-
-        jLabel60.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel60.setText("Requested Delivery Date");
-        jPanel3.add(jLabel60);
-        jLabel60.setBounds(90, 180, 160, 17);
-
-        jLabel61.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel61.setText("Sales Person Code");
-        jPanel3.add(jLabel61);
-        jLabel61.setBounds(90, 210, 120, 17);
-
-        jLabel62.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel62.setText("Sell - to Connect");
-        jPanel3.add(jLabel62);
-        jLabel62.setBounds(90, 240, 130, 17);
-
-        jLabel63.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel63.setText("Reference No.");
-        jPanel3.add(jLabel63);
-        jLabel63.setBounds(90, 270, 100, 17);
-
-        jLabel64.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel64.setText("Order Date");
-        jPanel3.add(jLabel64);
-        jLabel64.setBounds(480, 30, 90, 17);
-
-        jLabel65.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel65.setText("Document Date");
-        jPanel3.add(jLabel65);
-        jLabel65.setBounds(480, 60, 110, 20);
-
-        jLabel66.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel66.setText("Payment Status");
-        jPanel3.add(jLabel66);
-        jLabel66.setBounds(480, 90, 120, 17);
-
-        jLabel67.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel67.setText("Payment Method");
-        jPanel3.add(jLabel67);
-        jLabel67.setBounds(480, 120, 120, 17);
-
-        jLabel68.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel68.setText("Payment Terms Code");
-        jPanel3.add(jLabel68);
-        jLabel68.setBounds(480, 150, 150, 17);
-
-        jLabel69.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel69.setText("Due Date");
-        jPanel3.add(jLabel69);
-        jLabel69.setBounds(480, 180, 90, 17);
-
-        jLabel70.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel70.setText("Paymont Discount");
-        jPanel3.add(jLabel70);
-        jLabel70.setBounds(480, 210, 130, 17);
-
-        jLabel71.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel71.setText("Commnets");
-        jPanel3.add(jLabel71);
-        jLabel71.setBounds(90, 300, 80, 17);
-
-        jLabel72.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel72.setText("SELL - TO - ADDRESS");
-        jPanel3.add(jLabel72);
-        jLabel72.setBounds(90, 360, 190, 17);
-
-        jLabel73.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel73.setText("ORD / 301262");
-        jPanel3.add(jLabel73);
-        jLabel73.setBounds(280, 30, 90, 20);
-
-        jLabel74.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel74.setText("Express Delivery");
-        jPanel3.add(jLabel74);
-        jLabel74.setBounds(280, 60, 110, 17);
-
-        jLabel75.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel75.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel75.setText("1000");
-        jPanel3.add(jLabel75);
-        jLabel75.setBounds(280, 90, 90, 17);
-
-        jLabel76.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel76.setText("4 / 11 / 2020");
-        jPanel3.add(jLabel76);
-        jLabel76.setBounds(280, 120, 90, 17);
-
-        jLabel77.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel77.setText("YELLOW");
-        jPanel3.add(jLabel77);
-        jLabel77.setBounds(280, 150, 80, 17);
-
-        jLabel78.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel78.setText("30 / 11 / 2020");
-        jPanel3.add(jLabel78);
-        jLabel78.setBounds(280, 180, 90, 17);
-
-        jLabel79.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel79.setText("Shashika De Silva");
-        jPanel3.add(jLabel79);
-        jLabel79.setBounds(280, 210, 140, 17);
-
-        jLabel80.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel80.setText("b2b");
-        jPanel3.add(jLabel80);
-        jLabel80.setBounds(280, 240, 21, 17);
-
-        jLabel81.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel81.setText("456789346");
-        jPanel3.add(jLabel81);
-        jLabel81.setBounds(280, 270, 100, 17);
-
-        jLabel82.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel82.setText("Demo Comment");
-        jPanel3.add(jLabel82);
-        jLabel82.setBounds(280, 300, 130, 17);
-
-        jLabel83.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel83.setText("4 / 11 / 2020");
-        jPanel3.add(jLabel83);
-        jLabel83.setBounds(700, 60, 110, 17);
-
-        jLabel84.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel84.setText("Paid");
-        jPanel3.add(jLabel84);
-        jLabel84.setBounds(700, 90, 26, 17);
-
-        jLabel85.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel85.setText("PayPal");
-        jPanel3.add(jLabel85);
-        jLabel85.setBounds(700, 120, 41, 17);
-
-        jLabel86.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel86.setText("1M (8D)");
-        jPanel3.add(jLabel86);
-        jLabel86.setBounds(700, 150, 70, 17);
-
-        jLabel87.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel87.setText("5 / 11 / 2020");
-        jPanel3.add(jLabel87);
-        jLabel87.setBounds(700, 180, 110, 17);
-
-        jLabel88.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel88.setText("4,00");
-        jPanel3.add(jLabel88);
-        jLabel88.setBounds(700, 210, 25, 17);
-
-        jLabel89.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel89.setText("28 / 11 / 2020");
-        jPanel3.add(jLabel89);
-        jLabel89.setBounds(700, 240, 90, 17);
-
-        jLabel90.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel90.setText("4 / 11 / 2020");
-        jPanel3.add(jLabel90);
-        jLabel90.setBounds(700, 30, 110, 17);
-
-        jLabel91.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel91.setText("BILL - TO - ADDRESS");
-        jPanel3.add(jLabel91);
-        jLabel91.setBounds(370, 360, 160, 17);
-
-        jLabel92.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel92.setText("Jay Jay Mills (pvt) Ltd"); // NOI18N
-        jPanel3.add(jLabel92);
-        jLabel92.setBounds(90, 390, 150, 14);
-
-        jLabel93.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel93.setText("b2b");
-        jPanel3.add(jLabel93);
-        jLabel93.setBounds(90, 420, 60, 14);
-
-        jLabel94.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel94.setText("No : 14, Sri Dharmarama road");
-        jPanel3.add(jLabel94);
-        jLabel94.setBounds(90, 450, 180, 14);
-
-        jLabel95.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel95.setText("Colombo 07 , Srilanka");
-        jPanel3.add(jLabel95);
-        jLabel95.setBounds(90, 480, 140, 14);
-
-        jPanel1.add(jPanel3);
-        jPanel3.setBounds(0, 0, 0, 0);
-
-        jPanel4.setBackground(new java.awt.Color(0, 204, 204));
-        jPanel4.setLayout(null);
-
-        jLabel96.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel96.setText("Payment Discount Date");
-        jPanel4.add(jLabel96);
-        jLabel96.setBounds(480, 240, 160, 17);
-
-        jLabel97.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel97.setText("Shipment Date");
-        jPanel4.add(jLabel97);
-        jLabel97.setBounds(90, 120, 110, 17);
-
-        jLabel98.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel98.setText("Track & Trace Number");
-        jPanel4.add(jLabel98);
-        jLabel98.setBounds(90, 90, 160, 17);
-
-        jLabel99.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel99.setText("Shipping Method");
-        jPanel4.add(jLabel99);
-        jLabel99.setBounds(90, 60, 170, 17);
-
-        jLabel100.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel100.setText("Order No.");
-        jPanel4.add(jLabel100);
-        jLabel100.setBounds(90, 30, 90, 20);
-
-        jLabel101.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel101.setText("Location Code");
-        jPanel4.add(jLabel101);
-        jLabel101.setBounds(90, 150, 110, 20);
-
-        jLabel102.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel102.setText("SHIP - TO - ADDRESS");
-        jPanel4.add(jLabel102);
-        jLabel102.setBounds(650, 360, 160, 17);
-
-        jLabel103.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel103.setText("Requested Delivery Date");
-        jPanel4.add(jLabel103);
-        jLabel103.setBounds(90, 180, 160, 17);
-
-        jLabel104.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel104.setText("Sales Person Code");
-        jPanel4.add(jLabel104);
-        jLabel104.setBounds(90, 210, 120, 17);
-
-        jLabel105.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel105.setText("Sell - to Connect");
-        jPanel4.add(jLabel105);
-        jLabel105.setBounds(90, 240, 130, 17);
-
-        jLabel106.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel106.setText("Reference No.");
-        jPanel4.add(jLabel106);
-        jLabel106.setBounds(90, 270, 100, 17);
-
-        jLabel107.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel107.setText("Order Date");
-        jPanel4.add(jLabel107);
-        jLabel107.setBounds(480, 30, 90, 17);
-
-        jLabel108.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel108.setText("Document Date");
-        jPanel4.add(jLabel108);
-        jLabel108.setBounds(480, 60, 110, 20);
-
-        jLabel109.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel109.setText("Payment Status");
-        jPanel4.add(jLabel109);
-        jLabel109.setBounds(480, 90, 120, 17);
-
-        jLabel110.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel110.setText("Payment Method");
-        jPanel4.add(jLabel110);
-        jLabel110.setBounds(480, 120, 120, 17);
-
-        jLabel111.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel111.setText("Payment Terms Code");
-        jPanel4.add(jLabel111);
-        jLabel111.setBounds(480, 150, 150, 17);
-
-        jLabel112.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel112.setText("Due Date");
-        jPanel4.add(jLabel112);
-        jLabel112.setBounds(480, 180, 90, 17);
-
-        jLabel113.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel113.setText("Paymont Discount");
-        jPanel4.add(jLabel113);
-        jLabel113.setBounds(480, 210, 130, 17);
-
-        jLabel114.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel114.setText("Commnets");
-        jPanel4.add(jLabel114);
-        jLabel114.setBounds(90, 300, 80, 17);
-
-        jLabel115.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel115.setText("SELL - TO - ADDRESS");
-        jPanel4.add(jLabel115);
-        jLabel115.setBounds(90, 360, 190, 17);
-
-        jLabel116.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel116.setText("ORD / 301262");
-        jPanel4.add(jLabel116);
-        jLabel116.setBounds(280, 30, 90, 20);
-
-        jLabel117.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel117.setText("Express Delivery");
-        jPanel4.add(jLabel117);
-        jLabel117.setBounds(280, 60, 110, 17);
-
-        jLabel118.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel118.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel118.setText("1000");
-        jPanel4.add(jLabel118);
-        jLabel118.setBounds(280, 90, 90, 17);
-
-        jLabel119.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel119.setText("4 / 11 / 2020");
-        jPanel4.add(jLabel119);
-        jLabel119.setBounds(280, 120, 90, 17);
-
-        jLabel120.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel120.setText("YELLOW");
-        jPanel4.add(jLabel120);
-        jLabel120.setBounds(280, 150, 80, 17);
-
-        jLabel121.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel121.setText("30 / 11 / 2020");
-        jPanel4.add(jLabel121);
-        jLabel121.setBounds(280, 180, 90, 17);
-
-        jLabel122.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel122.setText("Shashika De Silva");
-        jPanel4.add(jLabel122);
-        jLabel122.setBounds(280, 210, 140, 17);
-
-        jLabel123.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel123.setText("b2b");
-        jPanel4.add(jLabel123);
-        jLabel123.setBounds(280, 240, 21, 17);
-
-        jLabel124.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel124.setText("456789346");
-        jPanel4.add(jLabel124);
-        jLabel124.setBounds(280, 270, 100, 17);
-
-        jLabel125.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel125.setText("Demo Comment");
-        jPanel4.add(jLabel125);
-        jLabel125.setBounds(280, 300, 130, 17);
-
-        jLabel126.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel126.setText("4 / 11 / 2020");
-        jPanel4.add(jLabel126);
-        jLabel126.setBounds(700, 60, 110, 17);
-
-        jLabel127.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel127.setText("Paid");
-        jPanel4.add(jLabel127);
-        jLabel127.setBounds(700, 90, 26, 17);
-
-        jLabel128.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel128.setText("PayPal");
-        jPanel4.add(jLabel128);
-        jLabel128.setBounds(700, 120, 41, 17);
-
-        jLabel129.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel129.setText("1M (8D)");
-        jPanel4.add(jLabel129);
-        jLabel129.setBounds(700, 150, 70, 17);
-
-        jLabel130.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel130.setText("5 / 11 / 2020");
-        jPanel4.add(jLabel130);
-        jLabel130.setBounds(700, 180, 110, 17);
-
-        jLabel131.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel131.setText("4,00");
-        jPanel4.add(jLabel131);
-        jLabel131.setBounds(700, 210, 25, 17);
-
-        jLabel132.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel132.setText("28 / 11 / 2020");
-        jPanel4.add(jLabel132);
-        jLabel132.setBounds(700, 240, 90, 17);
-
-        jLabel133.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel133.setText("4 / 11 / 2020");
-        jPanel4.add(jLabel133);
-        jLabel133.setBounds(700, 30, 110, 17);
-
-        jLabel134.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel134.setText("BILL - TO - ADDRESS");
-        jPanel4.add(jLabel134);
-        jLabel134.setBounds(370, 360, 160, 17);
-
-        jLabel135.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel135.setText("Jay Jay Mills (pvt) Ltd"); // NOI18N
-        jPanel4.add(jLabel135);
-        jLabel135.setBounds(90, 390, 150, 14);
-
-        jLabel136.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel136.setText("b2b");
-        jPanel4.add(jLabel136);
-        jLabel136.setBounds(90, 420, 60, 14);
-
-        jLabel137.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel137.setText("No : 14, Sri Dharmarama road");
-        jPanel4.add(jLabel137);
-        jLabel137.setBounds(90, 450, 180, 14);
-
-        jLabel138.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel138.setText("Colombo 07 , Srilanka");
-        jPanel4.add(jLabel138);
-        jLabel138.setBounds(90, 480, 140, 14);
-
-        jPanel5.setBackground(new java.awt.Color(0, 204, 204));
-        jPanel5.setLayout(null);
-
-        jLabel139.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel139.setText("Payment Discount Date");
-        jPanel5.add(jLabel139);
-        jLabel139.setBounds(480, 240, 160, 17);
-
-        jLabel140.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel140.setText("Shipment Date");
-        jPanel5.add(jLabel140);
-        jLabel140.setBounds(90, 120, 110, 17);
-
-        jLabel141.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel141.setText("Track & Trace Number");
-        jPanel5.add(jLabel141);
-        jLabel141.setBounds(90, 90, 160, 17);
-
-        jLabel142.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel142.setText("Shipping Method");
-        jPanel5.add(jLabel142);
-        jLabel142.setBounds(90, 60, 170, 17);
-
-        jLabel143.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel143.setText("Order No.");
-        jPanel5.add(jLabel143);
-        jLabel143.setBounds(90, 30, 90, 20);
-
-        jLabel144.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel144.setText("Location Code");
-        jPanel5.add(jLabel144);
-        jLabel144.setBounds(90, 150, 110, 20);
-
-        jLabel145.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel145.setText("SHIP - TO - ADDRESS");
-        jPanel5.add(jLabel145);
-        jLabel145.setBounds(650, 360, 160, 17);
-
-        jLabel146.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel146.setText("Requested Delivery Date");
-        jPanel5.add(jLabel146);
-        jLabel146.setBounds(90, 180, 160, 17);
-
-        jLabel147.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel147.setText("Sales Person Code");
-        jPanel5.add(jLabel147);
-        jLabel147.setBounds(90, 210, 120, 17);
-
-        jLabel148.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel148.setText("Sell - to Connect");
-        jPanel5.add(jLabel148);
-        jLabel148.setBounds(90, 240, 130, 17);
-
-        jLabel149.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel149.setText("Reference No.");
-        jPanel5.add(jLabel149);
-        jLabel149.setBounds(90, 270, 100, 17);
-
-        jLabel150.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel150.setText("Order Date");
-        jPanel5.add(jLabel150);
-        jLabel150.setBounds(480, 30, 90, 17);
-
-        jLabel151.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel151.setText("Document Date");
-        jPanel5.add(jLabel151);
-        jLabel151.setBounds(480, 60, 110, 20);
-
-        jLabel152.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel152.setText("Payment Status");
-        jPanel5.add(jLabel152);
-        jLabel152.setBounds(480, 90, 120, 17);
-
-        jLabel153.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel153.setText("Payment Method");
-        jPanel5.add(jLabel153);
-        jLabel153.setBounds(480, 120, 120, 17);
-
-        jLabel154.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel154.setText("Payment Terms Code");
-        jPanel5.add(jLabel154);
-        jLabel154.setBounds(480, 150, 150, 17);
-
-        jLabel155.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel155.setText("Due Date");
-        jPanel5.add(jLabel155);
-        jLabel155.setBounds(480, 180, 90, 17);
-
-        jLabel156.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel156.setText("Paymont Discount");
-        jPanel5.add(jLabel156);
-        jLabel156.setBounds(480, 210, 130, 17);
-
-        jLabel157.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel157.setText("Commnets");
-        jPanel5.add(jLabel157);
-        jLabel157.setBounds(90, 300, 80, 17);
-
-        jLabel158.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel158.setText("SELL - TO - ADDRESS");
-        jPanel5.add(jLabel158);
-        jLabel158.setBounds(90, 360, 190, 17);
-
-        jLabel159.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel159.setText("ORD / 301262");
-        jPanel5.add(jLabel159);
-        jLabel159.setBounds(280, 30, 90, 20);
-
-        jLabel160.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel160.setText("Express Delivery");
-        jPanel5.add(jLabel160);
-        jLabel160.setBounds(280, 60, 110, 17);
-
-        jLabel161.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel161.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel161.setText("1000");
-        jPanel5.add(jLabel161);
-        jLabel161.setBounds(280, 90, 90, 17);
-
-        jLabel162.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel162.setText("4 / 11 / 2020");
-        jPanel5.add(jLabel162);
-        jLabel162.setBounds(280, 120, 90, 17);
-
-        jLabel163.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel163.setText("YELLOW");
-        jPanel5.add(jLabel163);
-        jLabel163.setBounds(280, 150, 80, 17);
-
-        jLabel164.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel164.setText("30 / 11 / 2020");
-        jPanel5.add(jLabel164);
-        jLabel164.setBounds(280, 180, 90, 17);
-
-        jLabel165.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel165.setText("Shashika De Silva");
-        jPanel5.add(jLabel165);
-        jLabel165.setBounds(280, 210, 140, 17);
-
-        jLabel166.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel166.setText("b2b");
-        jPanel5.add(jLabel166);
-        jLabel166.setBounds(280, 240, 21, 17);
-
-        jLabel167.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel167.setText("456789346");
-        jPanel5.add(jLabel167);
-        jLabel167.setBounds(280, 270, 100, 17);
-
-        jLabel168.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel168.setText("Demo Comment");
-        jPanel5.add(jLabel168);
-        jLabel168.setBounds(280, 300, 130, 17);
-
-        jLabel169.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel169.setText("4 / 11 / 2020");
-        jPanel5.add(jLabel169);
-        jLabel169.setBounds(700, 60, 110, 17);
-
-        jLabel170.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel170.setText("Paid");
-        jPanel5.add(jLabel170);
-        jLabel170.setBounds(700, 90, 26, 17);
-
-        jLabel171.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel171.setText("PayPal");
-        jPanel5.add(jLabel171);
-        jLabel171.setBounds(700, 120, 41, 17);
-
-        jLabel172.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel172.setText("1M (8D)");
-        jPanel5.add(jLabel172);
-        jLabel172.setBounds(700, 150, 70, 17);
-
-        jLabel173.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel173.setText("5 / 11 / 2020");
-        jPanel5.add(jLabel173);
-        jLabel173.setBounds(700, 180, 110, 17);
-
-        jLabel174.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel174.setText("4,00");
-        jPanel5.add(jLabel174);
-        jLabel174.setBounds(700, 210, 25, 17);
-
-        jLabel175.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel175.setText("28 / 11 / 2020");
-        jPanel5.add(jLabel175);
-        jLabel175.setBounds(700, 240, 90, 17);
-
-        jLabel176.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel176.setText("4 / 11 / 2020");
-        jPanel5.add(jLabel176);
-        jLabel176.setBounds(700, 30, 110, 17);
-
-        jLabel177.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel177.setText("BILL - TO - ADDRESS");
-        jPanel5.add(jLabel177);
-        jLabel177.setBounds(370, 360, 160, 17);
-
-        jLabel178.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel178.setText("Jay Jay Mills (pvt) Ltd"); // NOI18N
-        jPanel5.add(jLabel178);
-        jLabel178.setBounds(90, 390, 150, 14);
-
-        jLabel179.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel179.setText("b2b");
-        jPanel5.add(jLabel179);
-        jLabel179.setBounds(90, 420, 60, 14);
-
-        jLabel180.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel180.setText("No : 14, Sri Dharmarama road");
-        jPanel5.add(jLabel180);
-        jLabel180.setBounds(90, 450, 180, 14);
-
-        jLabel181.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel181.setText("Colombo 07 , Srilanka");
-        jPanel5.add(jLabel181);
-        jLabel181.setBounds(90, 480, 140, 14);
-
-        jPanel4.add(jPanel5);
-        jPanel5.setBounds(0, 0, 0, 0);
-
-        jPanel1.add(jPanel4);
-        jPanel4.setBounds(0, 0, 0, 0);
-
-        jLabel182.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel182.setText("Jay Jay Mills (pvt) Ltd"); // NOI18N
-        jPanel1.add(jLabel182);
-        jLabel182.setBounds(90, 390, 150, 14);
-
-        jLabel183.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel183.setText("Jay Jay Mills (pvt) Ltd"); // NOI18N
-        jPanel1.add(jLabel183);
-        jLabel183.setBounds(370, 390, 150, 14);
-
-        jLabel184.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel184.setText("b2b");
-        jPanel1.add(jLabel184);
-        jLabel184.setBounds(90, 420, 60, 14);
-
-        jLabel185.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel185.setText("b2b");
-        jPanel1.add(jLabel185);
-        jLabel185.setBounds(370, 420, 60, 14);
-
-        jLabel186.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel186.setText("No : 14, Sri Dharmarama road");
-        jPanel1.add(jLabel186);
-        jLabel186.setBounds(90, 450, 180, 14);
-
-        jLabel187.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel187.setText("No : 14, Sri Dharmarama road");
-        jPanel1.add(jLabel187);
-        jLabel187.setBounds(370, 450, 180, 14);
-
-        jLabel188.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel188.setText("Colombo 07 , Srilanka");
-        jPanel1.add(jLabel188);
-        jLabel188.setBounds(90, 480, 140, 14);
-
-        jLabel189.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel189.setText("Colombo 07 , Srilanka");
-        jPanel1.add(jLabel189);
-        jLabel189.setBounds(370, 480, 140, 14);
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
-        jLabel39.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
-        jLabel39.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel39.setText("TRACK ORDERKEY : ORD / 301262 ORDER");
-
         jButton1.setBackground(new java.awt.Color(204, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\Desktop\\MTK\\courierservice\\home_small.png")); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setText("Profile");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -1185,29 +144,210 @@ public class Trackorderpage extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(0, 204, 204));
+        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton3.setText("Show details");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setBackground(new java.awt.Color(255, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Delivery ID");
+
+        jScrollPane6.setViewportView(jTextPane3);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel39)
-                    .addComponent(jButton2))
-                .addContainerGap(444, Short.MAX_VALUE))
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(280, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(135, 135, 135)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(149, 149, 149))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(jLabel39)
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3))))
+                .addGap(15, 15, 15))
+        );
+
+        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+
+        jScrollPane4.setViewportView(jTextPane1);
+
+        jScrollPane5.setViewportView(jTextPane2);
+
+        jScrollPane7.setViewportView(jTextPane4);
+
+        jScrollPane8.setViewportView(jTextPane5);
+
+        jScrollPane9.setViewportView(jTextPane6);
+
+        jScrollPane10.setViewportView(jTextPane7);
+
+        jScrollPane12.setViewportView(jTextPane9);
+
+        jScrollPane14.setViewportView(jTextPane11);
+
+        jScrollPane15.setViewportView(jTextPane12);
+
+        jScrollPane17.setViewportView(jTextPane8);
+
+        jScrollPane18.setViewportView(jTextPane10);
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel1.setText("Sender Name");
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel2.setText("Sender Address");
+
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel4.setText("Sender Contact No");
+
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel5.setText("Reciver Name");
+
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel6.setText("Reciver Contact No");
+
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel7.setText("Reciver Address");
+
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel8.setText("Weight");
+
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel9.setText("Shipping Charges");
+
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel10.setText("Cost");
+
+        jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel11.setText("Payment Status");
+
+        jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel12.setText("Payment Method");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12))
+                .addGap(111, 111, 111)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                                                        .addComponent(jScrollPane15))
+                                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jScrollPane10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(19, 19, 19)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9)
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(194, 194, 194))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1224,10 +364,10 @@ public class Trackorderpage extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -1235,14 +375,65 @@ public class Trackorderpage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        home info = new home();
+        Profile info = new Profile();
         info.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         TrackOrder to = new TrackOrder();
         to.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+    String sn,sa,rn,ra,ps,pm,d,c;
+    int id,scno,rcno,w,sc;
+    
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            con=DriverManager.getConnection("jdbc:mysql://localhost:1433/news","root","");
+            String query = "SELECT * FROM delivery where deliveryid=?";
+            Statement st = con.createStatement();
+            
+            PreparedStatement pstmt1 = null;
+            pstmt1 = con.prepareStatement(query);
+            pstmt1.setString(1, Integer.toString(i));
+            rs = pstmt1.executeQuery();
+            
+            while (rs.next())
+            {
+              sn = rs.getString("sendername");
+              sa=rs.getString("senderaddress");
+              id=rs.getInt("deliveryid");
+              scno=rs.getInt("sendercontactno");
+              rn=rs.getString("recivername");
+              ra=rs.getString("reciveraddress");
+              rcno=rs.getInt("recivercontactno");
+              w=rs.getInt("weight");
+              sc=rs.getInt("shippingcharges");
+              c=rs.getString("cost");
+              ps=rs.getString("paymentstatus");
+              pm=rs.getString("paymentmethod");
+             
+            
+            }
+        } catch (SQLException ex) {
+            
+        }
+            jTextPane1.setText(sn);
+            jTextPane2.setText(sa);
+            jTextPane3.setText(Integer.toString(id));
+            jTextPane4.setText(Integer.toString(scno));
+            jTextPane5.setText(rn);
+            jTextPane6.setText(ra);
+            jTextPane7.setText(Integer.toString(rcno));
+            jTextPane8.setText(Integer.toString(w));
+            jTextPane9.setText(Integer.toString(sc));
+            jTextPane10.setText(c);
+            jTextPane11.setText(ps);
+            jTextPane12.setText(pm);
+            
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1274,7 +465,7 @@ public class Trackorderpage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Trackorderpage().setVisible(true);
+                new Trackorderpage(i).setVisible(true);
             }
         });
     }
@@ -1282,195 +473,50 @@ public class Trackorderpage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel100;
-    private javax.swing.JLabel jLabel101;
-    private javax.swing.JLabel jLabel102;
-    private javax.swing.JLabel jLabel103;
-    private javax.swing.JLabel jLabel104;
-    private javax.swing.JLabel jLabel105;
-    private javax.swing.JLabel jLabel106;
-    private javax.swing.JLabel jLabel107;
-    private javax.swing.JLabel jLabel108;
-    private javax.swing.JLabel jLabel109;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel110;
-    private javax.swing.JLabel jLabel111;
-    private javax.swing.JLabel jLabel112;
-    private javax.swing.JLabel jLabel113;
-    private javax.swing.JLabel jLabel114;
-    private javax.swing.JLabel jLabel115;
-    private javax.swing.JLabel jLabel116;
-    private javax.swing.JLabel jLabel117;
-    private javax.swing.JLabel jLabel118;
-    private javax.swing.JLabel jLabel119;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel120;
-    private javax.swing.JLabel jLabel121;
-    private javax.swing.JLabel jLabel122;
-    private javax.swing.JLabel jLabel123;
-    private javax.swing.JLabel jLabel124;
-    private javax.swing.JLabel jLabel125;
-    private javax.swing.JLabel jLabel126;
-    private javax.swing.JLabel jLabel127;
-    private javax.swing.JLabel jLabel128;
-    private javax.swing.JLabel jLabel129;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel130;
-    private javax.swing.JLabel jLabel131;
-    private javax.swing.JLabel jLabel132;
-    private javax.swing.JLabel jLabel133;
-    private javax.swing.JLabel jLabel134;
-    private javax.swing.JLabel jLabel135;
-    private javax.swing.JLabel jLabel136;
-    private javax.swing.JLabel jLabel137;
-    private javax.swing.JLabel jLabel138;
-    private javax.swing.JLabel jLabel139;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel140;
-    private javax.swing.JLabel jLabel141;
-    private javax.swing.JLabel jLabel142;
-    private javax.swing.JLabel jLabel143;
-    private javax.swing.JLabel jLabel144;
-    private javax.swing.JLabel jLabel145;
-    private javax.swing.JLabel jLabel146;
-    private javax.swing.JLabel jLabel147;
-    private javax.swing.JLabel jLabel148;
-    private javax.swing.JLabel jLabel149;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel150;
-    private javax.swing.JLabel jLabel151;
-    private javax.swing.JLabel jLabel152;
-    private javax.swing.JLabel jLabel153;
-    private javax.swing.JLabel jLabel154;
-    private javax.swing.JLabel jLabel155;
-    private javax.swing.JLabel jLabel156;
-    private javax.swing.JLabel jLabel157;
-    private javax.swing.JLabel jLabel158;
-    private javax.swing.JLabel jLabel159;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel160;
-    private javax.swing.JLabel jLabel161;
-    private javax.swing.JLabel jLabel162;
-    private javax.swing.JLabel jLabel163;
-    private javax.swing.JLabel jLabel164;
-    private javax.swing.JLabel jLabel165;
-    private javax.swing.JLabel jLabel166;
-    private javax.swing.JLabel jLabel167;
-    private javax.swing.JLabel jLabel168;
-    private javax.swing.JLabel jLabel169;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel170;
-    private javax.swing.JLabel jLabel171;
-    private javax.swing.JLabel jLabel172;
-    private javax.swing.JLabel jLabel173;
-    private javax.swing.JLabel jLabel174;
-    private javax.swing.JLabel jLabel175;
-    private javax.swing.JLabel jLabel176;
-    private javax.swing.JLabel jLabel177;
-    private javax.swing.JLabel jLabel178;
-    private javax.swing.JLabel jLabel179;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel180;
-    private javax.swing.JLabel jLabel181;
-    private javax.swing.JLabel jLabel182;
-    private javax.swing.JLabel jLabel183;
-    private javax.swing.JLabel jLabel184;
-    private javax.swing.JLabel jLabel185;
-    private javax.swing.JLabel jLabel186;
-    private javax.swing.JLabel jLabel187;
-    private javax.swing.JLabel jLabel188;
-    private javax.swing.JLabel jLabel189;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel53;
-    private javax.swing.JLabel jLabel54;
-    private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
-    private javax.swing.JLabel jLabel58;
-    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel60;
-    private javax.swing.JLabel jLabel61;
-    private javax.swing.JLabel jLabel62;
-    private javax.swing.JLabel jLabel63;
-    private javax.swing.JLabel jLabel64;
-    private javax.swing.JLabel jLabel65;
-    private javax.swing.JLabel jLabel66;
-    private javax.swing.JLabel jLabel67;
-    private javax.swing.JLabel jLabel68;
-    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel70;
-    private javax.swing.JLabel jLabel71;
-    private javax.swing.JLabel jLabel72;
-    private javax.swing.JLabel jLabel73;
-    private javax.swing.JLabel jLabel74;
-    private javax.swing.JLabel jLabel75;
-    private javax.swing.JLabel jLabel76;
-    private javax.swing.JLabel jLabel77;
-    private javax.swing.JLabel jLabel78;
-    private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel80;
-    private javax.swing.JLabel jLabel81;
-    private javax.swing.JLabel jLabel82;
-    private javax.swing.JLabel jLabel83;
-    private javax.swing.JLabel jLabel84;
-    private javax.swing.JLabel jLabel85;
-    private javax.swing.JLabel jLabel86;
-    private javax.swing.JLabel jLabel87;
-    private javax.swing.JLabel jLabel88;
-    private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabel90;
-    private javax.swing.JLabel jLabel91;
-    private javax.swing.JLabel jLabel92;
-    private javax.swing.JLabel jLabel93;
-    private javax.swing.JLabel jLabel94;
-    private javax.swing.JLabel jLabel95;
-    private javax.swing.JLabel jLabel96;
-    private javax.swing.JLabel jLabel97;
-    private javax.swing.JLabel jLabel98;
-    private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane17;
+    private javax.swing.JScrollPane jScrollPane18;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane jTextPane10;
+    private javax.swing.JTextPane jTextPane11;
+    private javax.swing.JTextPane jTextPane12;
+    private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JTextPane jTextPane3;
+    private javax.swing.JTextPane jTextPane4;
+    private javax.swing.JTextPane jTextPane5;
+    private javax.swing.JTextPane jTextPane6;
+    private javax.swing.JTextPane jTextPane7;
+    private javax.swing.JTextPane jTextPane8;
+    private javax.swing.JTextPane jTextPane9;
     // End of variables declaration//GEN-END:variables
 }

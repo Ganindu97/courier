@@ -1,5 +1,8 @@
 package terms;
 
+import javax.swing.JOptionPane;
+import courierservice.home;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -246,7 +249,10 @@ public class abcd extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okbtActionPerformed
-        // TODO add your handling code here:
+         JOptionPane.showMessageDialog(null,"Registered successfully");
+         
+         home hm = new home();
+         hm.setVisible(true);
     }//GEN-LAST:event_okbtActionPerformed
 
     private void checkboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxActionPerformed

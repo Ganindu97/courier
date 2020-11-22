@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package oo_inheritance_s;
+package courierservice;
 import com.sun.glass.events.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

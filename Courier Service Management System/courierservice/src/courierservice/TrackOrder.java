@@ -5,11 +5,23 @@
  */
 package courierservice;
 
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author ASUS
  */
 public class TrackOrder extends javax.swing.JFrame {
+    
+        Connection con;
+        PreparedStatement ps;
+        ResultSet rs;
 
     /**
      * Creates new form TrackOrder
@@ -31,7 +43,7 @@ public class TrackOrder extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txttracknumber = new javax.swing.JTextField();
+        txtdeliveryid = new javax.swing.JTextField();
         btnsearch = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
@@ -49,7 +61,7 @@ public class TrackOrder extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("To Track Your Order Please Enter Your SEARCH ID in the box below and press the \"SEARCH\" button.  ");
+        jLabel2.setText("To Track Your Order Please Enter Your DELIVERY ID in the box below and press the \"SEARCH\" button.  ");
 
         btnsearch.setBackground(new java.awt.Color(153, 255, 255));
         btnsearch.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 18)); // NOI18N
@@ -62,7 +74,7 @@ public class TrackOrder extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(153, 255, 255));
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\Desktop\\MTK\\courierservice\\home_small.png")); // NOI18N
+        jButton1.setText("Profile");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -88,30 +100,30 @@ public class TrackOrder extends javax.swing.JFrame {
                         .addGap(197, 197, 197)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txttracknumber, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtdeliveryid, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 203, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txttracknumber, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtdeliveryid, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnsearch)
                 .addGap(153, 153, 153))
         );
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(60, 90, 1040, 486);
+        jPanel2.setBounds(60, 90, 1040, 445);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,20 +146,53 @@ public class TrackOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        home info = new home();
+       
+        Profile info = new Profile();
         info.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearchActionPerformed
         
-        String TrackNumber = txttracknumber.getText();
+         try{
+           
+           Class.forName("com.mysql.jdbc.Driver");
+           Connection con = DriverManager.getConnection("jdbc:mysql://localhost:1433/news", "root", "");
+           
+           String sql = "SELECT * FROM `delivery` WHERE deliveryid =?";
+           PreparedStatement ps = con.prepareStatement(sql);
+           
+           
+           ps.setString(1,txtdeliveryid.getText());
+           
+           
+           ResultSet rs = ps.executeQuery();
+           
+           if(rs.next()){
+               
+               JOptionPane.showMessageDialog(null, "Searching Successfully!!!");
+               
+               Trackorderpage tp = new Trackorderpage(Integer.valueOf(txtdeliveryid.getText()));
+               tp.setVisible(true);
+               dispose();
+           }
+           else{
+               
+               JOptionPane.showMessageDialog(null, "Please Enter Your Correct Delivery ID");
+               
+               txtdeliveryid.setText("");
+               
+           }
+           
+           con.close();
+       
+       }catch(Exception ex){
+           
+           JOptionPane.showMessageDialog(null, ex);
+       
+       }
         
-        if( TrackNumber.contains("1000")){
-            
-            Trackorderpage top = new Trackorderpage();
-            top.setVisible(true);
         
-        }
         
     }//GEN-LAST:event_btnsearchActionPerformed
 
@@ -193,6 +238,6 @@ public class TrackOrder extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txttracknumber;
+    private javax.swing.JTextField txtdeliveryid;
     // End of variables declaration//GEN-END:variables
 }

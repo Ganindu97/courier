@@ -5,12 +5,26 @@
  */
 package courierservice;
 
+
+import java.awt.HeadlessException;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.Statement;
+
+
 /**
  *
  * @author ASUS
  */
 public class loginandsignin extends javax.swing.JFrame {
-
+    
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
     /**
      * Creates new form loginandsignin
      */
@@ -30,6 +44,7 @@ public class loginandsignin extends javax.swing.JFrame {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         lblloginsignin = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         lblusername = new javax.swing.JLabel();
@@ -58,12 +73,22 @@ public class loginandsignin extends javax.swing.JFrame {
         lblloginsignin.setForeground(new java.awt.Color(0, 204, 204));
         lblloginsignin.setText("LogIn / SignIn");
 
+        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\Desktop\\courier\\Courier Service Management System\\courierservice\\home_small.png")); // NOI18N
+        jButton3.setToolTipText("");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblloginsignin)
                 .addGap(323, 323, 323))
         );
@@ -72,7 +97,11 @@ public class loginandsignin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(lblloginsignin, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
@@ -104,6 +133,12 @@ public class loginandsignin extends javax.swing.JFrame {
         lblphonenumber.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         lblphonenumber.setForeground(new java.awt.Color(255, 255, 255));
         lblphonenumber.setText("Phone Number");
+
+        txtusername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtusernameActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -185,6 +220,11 @@ public class loginandsignin extends javax.swing.JFrame {
         btnregisternow.setBackground(new java.awt.Color(0, 204, 204));
         btnregisternow.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnregisternow.setText("Register Now");
+        btnregisternow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnregisternowActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -240,6 +280,7 @@ public class loginandsignin extends javax.swing.JFrame {
     private void btnalreadyhaveanaccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnalreadyhaveanaccountActionPerformed
         LogIn et = new LogIn();
         et.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnalreadyhaveanaccountActionPerformed
 
     private void btnclearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclearActionPerformed
@@ -250,6 +291,90 @@ public class loginandsignin extends javax.swing.JFrame {
             txtemail.setText(null);
              txtphonenumber.setText(null);
     }//GEN-LAST:event_btnclearActionPerformed
+
+    private void txtusernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtusernameActionPerformed
+
+    private void btnregisternowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregisternowActionPerformed
+       
+        int i=0;
+        try{
+                   
+            String sql = "INSERT INTO `reg`"
+            + "(username, password, name, address, email,tp)" 
+            + "VALUES (?,?,?,?,?,?)";
+            
+            
+            con=DriverManager.getConnection("jdbc:mysql://localhost:1433/news","root","");
+            
+            pst=con.prepareStatement(sql);
+            
+            if(txtusername.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Username is empty");
+                i=1;
+            }
+            PreparedStatement pstmt1 = null;
+            String un=txtusername.getText();
+            String query = "SELECT username FROM reg where username=?";
+            pstmt1 = con.prepareStatement(query);
+            pstmt1.setString(1, un);
+            rs = pstmt1.executeQuery();
+            
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null,"Username is already exist");
+                i=1;
+            }
+            else if(pwdpassword.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Password is empty");
+                i=1;
+            }
+            else if(txtname.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Name is empty");
+                i=1;
+            }
+            else if(txtaddress.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Address is empty");
+                i=1;
+            }
+            else if(txtemail.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Email is empty");
+                i=1;
+            }
+            else if(txtphonenumber.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Phone number is empty");
+                i=1;
+                
+            }
+            if(i==0){
+                
+                pst.setString(1,txtusername.getText());
+                pst.setString(2,pwdpassword.getText());
+                pst.setString(3,txtname.getText());
+                pst.setString(4,txtaddress.getText());
+                pst.setString(5,txtemail.getText());
+                pst.setString(6,txtphonenumber.getText());
+                pst.executeUpdate();
+            }
+            
+                                  
+       }catch(HeadlessException | SQLException ex){
+            JOptionPane.showMessageDialog(null,ex);
+        }
+        
+        if(i==0){
+         terms ab = new terms();
+               ab.setVisible(true);
+               dispose();
+        }
+         
+    }//GEN-LAST:event_btnregisternowActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        home hm = new home();
+        hm.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,6 +415,7 @@ public class loginandsignin extends javax.swing.JFrame {
     private javax.swing.JButton btnalreadyhaveanaccount;
     private javax.swing.JButton btnclear;
     private javax.swing.JButton btnregisternow;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
