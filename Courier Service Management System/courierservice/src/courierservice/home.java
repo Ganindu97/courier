@@ -105,7 +105,7 @@ public class home extends javax.swing.JFrame {
 
         btnloginandsignin.setBackground(new java.awt.Color(204, 204, 204));
         btnloginandsignin.setFont(new java.awt.Font("Showcard Gothic", 1, 14)); // NOI18N
-        btnloginandsignin.setText("LogIn / SignUp");
+        btnloginandsignin.setText("LogIn ");
         btnloginandsignin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnloginandsigninActionPerformed(evt);

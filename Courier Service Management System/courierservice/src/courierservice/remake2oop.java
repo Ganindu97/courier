@@ -50,7 +50,6 @@ public class remake2oop extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jButtonreset = new javax.swing.JButton();
         jButtonrecipt = new javax.swing.JButton();
         jButtonprint = new javax.swing.JButton();
         jButtonexit = new javax.swing.JButton();
@@ -106,18 +105,6 @@ public class remake2oop extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
-        jButtonreset.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButtonreset.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonreset.setText("RESET");
-        jButtonreset.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jButtonreset.setContentAreaFilled(false);
-        jButtonreset.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonreset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonresetActionPerformed(evt);
-            }
-        });
-
         jButtonrecipt.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButtonrecipt.setForeground(new java.awt.Color(255, 255, 255));
         jButtonrecipt.setText("RECIEIPT");
@@ -163,16 +150,13 @@ public class remake2oop extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButtonexit, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                     .addComponent(jButtonprint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonrecipt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonreset, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonrecipt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(205, 205, 205)
-                .addComponent(jButtonreset, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(260, 260, 260)
                 .addComponent(jButtonrecipt, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonprint, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -535,7 +519,7 @@ public class remake2oop extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonreciptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonreciptActionPerformed
-
+        jTextArea1.setText("");
         
         child_clz cost_of_Items = new child_clz();
         double icost,iSubtotal;
@@ -628,21 +612,6 @@ public class remake2oop extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonexitActionPerformed
 
-    private void jButtonresetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonresetActionPerformed
-
- JTextField cleartext = null;
-        for(Component c: jPanel3 .getComponents()){
-            if(c.getClass().toString().contains("javax.swing.JTextField")){
-                cleartext=(JTextField)c;
-                cleartext.setText("");
-            }
-            
-        }
-        
-           jTextArea1.setText(null);
-        
-    }//GEN-LAST:event_jButtonresetActionPerformed
-
     private void jButtonprintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonprintActionPerformed
  
 try{
@@ -700,7 +669,6 @@ catch(java.awt.print.PrinterException e){
     private javax.swing.JButton jButtonexit;
     private javax.swing.JButton jButtonprint;
     private javax.swing.JButton jButtonrecipt;
-    private javax.swing.JButton jButtonreset;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

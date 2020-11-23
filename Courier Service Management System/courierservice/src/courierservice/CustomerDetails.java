@@ -32,12 +32,7 @@ public class CustomerDetails extends javax.swing.JFrame {
     JTable table; 
     DefaultTableModel model;
     int i;
-    
-    
-    
-    
-    
-    
+ 
     /**
      * Creates new form CustomerDetails
      */
@@ -46,11 +41,7 @@ public class CustomerDetails extends javax.swing.JFrame {
         initComponents();
        
     }
-    public void show(){
-        int r=0;
-    }
     
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,8 +60,6 @@ public class CustomerDetails extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         btnshowdetails = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,23 +84,22 @@ public class CustomerDetails extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(379, 379, 379)
-                        .addComponent(jLabel1)))
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(466, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(464, 464, 464))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
@@ -121,7 +109,7 @@ public class CustomerDetails extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12", "Title 13"
+                "SenderName", "SenderAddress", "DeliveryID", "SenderContactNo", "ReciverName", "ReciverAddress", "ReciverContactNo", "Weight", "ShippingCharges", "Payment Cost", "PaymentStatus", "PaymentMethod", "Date"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -161,8 +149,6 @@ public class CustomerDetails extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane2.setViewportView(jTextPane1);
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -173,12 +159,10 @@ public class CustomerDetails extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnshowdetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(394, 394, 394)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(177, 177, 177)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(460, 460, 460))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,9 +172,7 @@ public class CustomerDetails extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnshowdetails)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton2)
                 .addGap(25, 25, 25))
         );
 
@@ -273,20 +255,64 @@ public class CustomerDetails extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btnshowdetailsActionPerformed
 
-    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
         i=jTable1.getSelectedRow();
         int i1=(int) table.getValueAt(i,2);
-        jTextPane1.setText(Integer.toString(i1));
         String query = "DELETE FROM delivery WHERE deliveryid="+i1;
         try {
             pst=con.prepareStatement(query);
             pst.execute();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
+            int rows = table.getRowCount(); 
+            for(int i = rows - 1; i >=0; i--)
+            {
+               model.removeRow(i); 
+            }
+            
+            
+            
+            model=(DefaultTableModel) jTable1.getModel();
+            
+            table=new JTable(model);
+            
+
+            con=DriverManager.getConnection("jdbc:mysql://localhost:1433/news","root","");
+            String query1 = "SELECT * FROM delivery";
+            Statement st = con.createStatement();
+            
+            PreparedStatement pstmt1 = null;
+            pstmt1 = con.prepareStatement(query1);
+            
+            rs = pstmt1.executeQuery();
+            Object[] row=new Object[13];
+            int r=0;
+            int c=0;
+            int rn=1;
+            while(rs.next()){
+               
+                model.setRowCount(rn);
+                table.setValueAt(rs.getString("sendername"),r,c);
+                table.setValueAt(rs.getString("senderaddress"),r,c+1);
+                table.setValueAt(rs.getInt("deliveryid"),r,c+2);
+                table.setValueAt(rs.getInt("sendercontactno"),r,c+3);
+                table.setValueAt(rs.getString("recivername"),r,c+4);
+                table.setValueAt(rs.getString("reciveraddress"),r,c+5);
+                table.setValueAt(rs.getInt("recivercontactno"),r,c+6);
+                table.setValueAt(rs.getInt("weight"),r,c+7);
+                table.setValueAt(rs.getInt("shippingcharges"),r,c+8);
+                table.setValueAt(rs.getString("cost"),r,c+9);
+                table.setValueAt(rs.getString("paymentstatus"),r,c+10);
+                table.setValueAt(rs.getString("paymentmethod"),r,c+11);
+                table.setValueAt(rs.getString("date"),r,c+12);
+                r++;
+                rn++;
+                c=0;
+           }
         }
-        
+           catch(Exception ex){
+           
+                JOptionPane.showMessageDialog(null, ex);
+           }   
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -323,9 +349,7 @@ public class CustomerDetails extends javax.swing.JFrame {
             }
         });
     }
-    
-    
-    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnshowdetails;
@@ -336,9 +360,7 @@ public class CustomerDetails extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 
     
